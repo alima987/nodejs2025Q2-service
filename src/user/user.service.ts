@@ -38,4 +38,11 @@ export class UserService {
     user.updatedAt = Date.now()
     return plainToInstance(User, user)
   }
+  delete(id: string): void  {
+    const userIndex = this.users.findIndex((u) => u.id === id);
+    if (userIndex === -1) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    this.users.splice(userIndex, 1);
+  }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { User } from "./user.entity";
 import { CreateUserDto, UpdatePasswordDto } from "./dto/user.dto";
@@ -35,5 +35,9 @@ export class UserController {
   updatePassword(@Param('id', new ParseUUIDPipe()) id: string, @Body() updatePasswordDto: UpdatePasswordDto) {
     return this.userService.updatePassword(id, updatePasswordDto)
   }
-  
+  @Delete(':id')
+  @HttpCode(204)
+  deleteUser(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.userService.delete(id)
+  }
 }
