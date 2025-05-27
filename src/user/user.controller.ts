@@ -1,7 +1,7 @@
-import { Body, Controller, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { User } from "./user.entity";
-import { CreateUserDto } from "./dto/create-user.dto";
+import { CreateUserDto, UpdatePasswordDto } from "./dto/user.dto";
 import { instanceToPlain } from "class-transformer";
 
 @Controller('user')
@@ -29,4 +29,11 @@ export class UserController {
     const newUser = this.userService.create(createUserDto)
     return instanceToPlain(newUser)
   }
+  @Put(':id')
+  @HttpCode(200)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
+  updatePassword(@Param('id', new ParseUUIDPipe()) id: string, @Body() updatePasswordDto: UpdatePasswordDto) {
+    return this.userService.updatePassword(id, updatePasswordDto)
+  }
+  
 }
