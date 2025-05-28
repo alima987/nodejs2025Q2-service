@@ -18,7 +18,7 @@ export class TrackController {
   findById(@Param('id', new ParseUUIDPipe({ version: '4' })) id: string): Track {
     const track = this.trackService.findById(id);
     if (!track) {
-      throw new NotFoundException(`User with id ${id} not found`);
+      throw new NotFoundException(`Track with id ${id} not found`);
     }
     return track;
   }
