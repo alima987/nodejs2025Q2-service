@@ -1,11 +1,10 @@
 export class Album {
-  id: string; 
+  id: string;
   name: string;
   year: number;
-  artistId: string | null; 
-  
+  artistId: string | null;
+
   constructor(partial: Partial<Album>) {
     Object.assign(this, partial);
   }
- 
 }

@@ -1,3 +1,3 @@
-import { Favorites } from "./favs.entity";
+import { Favorites } from './favs.entity';
 
-export const favs: Favorites[] = []
+export const favs: Favorites[] = [];

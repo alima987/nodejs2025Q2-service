@@ -1,10 +1,9 @@
 export class Artist {
-  id: string; 
+  id: string;
   name: string;
   grammy: boolean;
-  
+
   constructor(partial: Partial<Artist>) {
     Object.assign(this, partial);
   }
- 
 }

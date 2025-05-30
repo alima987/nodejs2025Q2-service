@@ -1,3 +1,3 @@
-import { Track } from "./track.entity";
+import { Track } from './track.entity';
 
-export const tracks: Track[] = []
+export const tracks: Track[] = [];

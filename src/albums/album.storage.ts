@@ -1,3 +1,3 @@
-import { Album } from "./album.entity";
+import { Album } from './album.entity';
 
-export const albums: Album[] = []
+export const albums: Album[] = [];

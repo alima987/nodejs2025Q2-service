@@ -1,6 +1,6 @@
-import { Controller, Delete, Get, HttpCode, Param, Post } from "@nestjs/common";
-import { FavoritesService } from "./favs.service";
-import { FavoritesResponse } from "./favs.dto";
+import { Controller, Delete, Get, HttpCode, Param, Post } from '@nestjs/common';
+import { FavoritesService } from './favs.service';
+import { FavoritesResponse } from './favs.dto';
 
 @Controller('favs')
 export class FavoritesController {

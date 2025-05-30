@@ -1,8 +1,21 @@
-import { Body, Controller, Delete, Get, HttpCode, NotFoundException, Param, ParseUUIDPipe, Post, Put, UsePipes, ValidationPipe } from "@nestjs/common";
-import { UserService } from "./user.service";
-import { User } from "./user.entity";
-import { CreateUserDto, UpdatePasswordDto } from "./dto/user.dto";
-import { instanceToPlain } from "class-transformer";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  NotFoundException,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Put,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { User } from './user.entity';
+import { CreateUserDto, UpdatePasswordDto } from './dto/user.dto';
+import { instanceToPlain } from 'class-transformer';
 
 @Controller('user')
 export class UserController {
@@ -11,7 +24,7 @@ export class UserController {
   @Get()
   @HttpCode(200)
   findAll(): User[] {
-    return this.userService.findAll()
+    return this.userService.findAll();
   }
   @Get(':id')
   @HttpCode(200)
@@ -26,18 +39,21 @@ export class UserController {
   @HttpCode(201)
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async create(@Body() createUserDto: CreateUserDto) {
-    const newUser = this.userService.create(createUserDto)
-    return instanceToPlain(newUser)
+    const newUser = this.userService.create(createUserDto);
+    return instanceToPlain(newUser);
   }
   @Put(':id')
   @HttpCode(200)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  updatePassword(@Param('id', new ParseUUIDPipe()) id: string, @Body() updatePasswordDto: UpdatePasswordDto) {
-    return this.userService.updatePassword(id, updatePasswordDto)
+  updatePassword(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() updatePasswordDto: UpdatePasswordDto,
+  ) {
+    return this.userService.updatePassword(id, updatePasswordDto);
   }
   @Delete(':id')
   @HttpCode(204)
   deleteUser(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.userService.delete(id)
+    return this.userService.delete(id);
   }
 }

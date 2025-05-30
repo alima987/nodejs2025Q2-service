@@ -1,3 +1,3 @@
-import { Artist } from "./artists.entity";
+import { Artist } from './artists.entity';
 
-export const artists: Artist[] = []
+export const artists: Artist[] = [];
