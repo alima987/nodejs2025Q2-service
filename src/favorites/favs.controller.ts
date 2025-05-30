@@ -11,35 +11,35 @@ export class FavoritesController {
   getAll(): FavoritesResponse {
     return this.favoritesService.getAllFavorites();
   }
-  @Post(':id')
+  @Post('track/:id')
   @HttpCode(201)
   addTrack(@Param('id') id: string) {
     return this.favoritesService.addTrackToFavorites(id);
   }
 
-  @Delete(':id')
+  @Delete('track/:id')
   @HttpCode(204)
   removeTrack(@Param('id') id: string) {
     this.favoritesService.removeTrackFromFavorites(id);
   }
-  @Post(':id')
+  @Post('album/:id')
   @HttpCode(201)
   addAlbum(@Param('id') id: string) {
     return this.favoritesService.addAlbumToFavorites(id);
   }
 
-  @Delete(':id')
+  @Delete('album/:id')
   @HttpCode(204)
   removeAlbum(@Param('id') id: string) {
     this.favoritesService.removeAlbumFromFavorites(id);
   }
-  @Post(':id')
+  @Post('artist/:id')
   @HttpCode(201)
   addArtist(@Param('id') id: string) {
     return this.favoritesService.addArtistToFavorites(id);
   }
 
-  @Delete(':id')
+  @Delete('artist/:id')
   @HttpCode(204)
   removeArtist(@Param('id') id: string) {
     this.favoritesService.removeArtistFromFavorites(id);
