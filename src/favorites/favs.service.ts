@@ -1,7 +1,6 @@
 import {
   BadRequestException,
   Injectable,
-  NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { AlbumService } from 'src/albums/album.service';
@@ -65,9 +64,6 @@ export class FavoritesService {
     }
 
     const index = this.favoriteTracks.indexOf(id);
-    if (index === -1) {
-      throw new NotFoundException(`Track with id ${id} is not in favorites`);
-    }
 
      if (index !== -1) this.favoriteTracks.splice(index, 1);
   }
@@ -98,9 +94,6 @@ export class FavoritesService {
     }
 
     const index = this.favoriteAlbums.indexOf(id);
-    if (index === -1) {
-      throw new NotFoundException(`Album with id ${id} is not in favorites`);
-    }
 
      if (index !== -1) this.favoriteAlbums.splice(index, 1);
   }
@@ -131,9 +124,6 @@ export class FavoritesService {
     }
 
     const index = this.favoriteArtists.indexOf(id);
-    if (index === -1) {
-      throw new NotFoundException(`Artist with id ${id} is not in favorites`);
-    }
 
     if (index !== -1) this.favoriteArtists.splice(index, 1)
   }
