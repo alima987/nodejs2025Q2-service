@@ -6,4 +6,5 @@ export class Favorites {
   constructor(partial: Partial<Favorites>) {
     Object.assign(this, partial);
   }
+  
 }
