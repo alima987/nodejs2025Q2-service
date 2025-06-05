@@ -1,0 +1,34 @@
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
+  login TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE artists (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  grammy BOOLEAN NOT NULL DEFAULT false
+);
+
+CREATE TABLE albums (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  year INTEGER NOT NULL,
+  artistId UUID REFERENCES artists(id) ON DELETE SET NULL
+);
+
+CREATE TABLE tracks (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  duration INTEGER NOT NULL,
+  artistId UUID REFERENCES artists(id) ON DELETE SET NULL,
+  albumId UUID REFERENCES albums(id) ON DELETE SET NULL
+);
+
+CREATE TABLE favorites (
+  id SERIAL PRIMARY KEY,
+  userId UUID REFERENCES users(id) ON DELETE CASCADE,
+  trackId UUID REFERENCES tracks(id) ON DELETE CASCADE,
+  albumId UUID REFERENCES albums(id) ON DELETE CASCADE,
+  artistId UUID REFERENCES artists(id) ON DELETE CASCADE
+);
