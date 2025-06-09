@@ -2,9 +2,9 @@ FROM postgres:16-alpine
 
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres
-ENV POSTGRES_DB=music_service
+ENV POSTGRES_DB=home_library
 
 COPY ./init.sql /docker-entrypoint-initdb.d/
 
 
-EXPOSE 5432
+EXPOSE 8080
