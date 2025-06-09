@@ -1,10 +1,33 @@
-export class Favorites {
-  artists: string[];
-  albums: string[];
-  tracks: string[];
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable
+} from 'typeorm';
+import { Artist } from '../artists/artists.entity';
+import { Album } from '../albums/album.entity';
+import { Track } from '../tracks/track.entity';
 
-  constructor(partial: Partial<Favorites>) {
-    Object.assign(this, partial);
+@Entity()
+export class Favorites {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @ManyToMany(() => Artist)
+  @JoinTable()
+  artists: Artist[];
+
+  @ManyToMany(() => Album)
+  @JoinTable()
+  albums: Album[];
+
+  @ManyToMany(() => Track)
+  @JoinTable()
+  tracks: Track[];
+
+  constructor(partial?: Partial<Favorites>) {
+    if (partial) {
+      Object.assign(this, partial);
+    }
   }
-  
 }
