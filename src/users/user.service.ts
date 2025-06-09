@@ -8,10 +8,17 @@ import { users } from './user.storage';
 import { CreateUserDto, UpdatePasswordDto } from './dto/user.dto';
 import { v4 as uuidv4 } from 'uuid';
 import { plainToInstance } from 'class-transformer';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
   private users = users;
+   constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
+  ) {}
+
   findAll(): User[] {
     return this.users;
   }
