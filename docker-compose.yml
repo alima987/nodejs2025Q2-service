@@ -1,0 +1,44 @@
+services:
+  app:
+    container_name: nodejs-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - nest-network
+    volumes:
+      - .:/app 
+      - /app/node_modules 
+
+  postgres:
+    container_name: nest_postgres
+    build:
+      context: .
+      dockerfile: Dockerfile.DB
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT:-5432}:${DB_PORT:-5432}"
+    networks:
+      - nest-network
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - db_logs:/var/log/postgresql_logs
+
+volumes:
+  db_data:
+  db_logs:
+
+networks:
+  nest-network:
+    driver: bridge
