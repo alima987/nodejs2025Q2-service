@@ -1,0 +1,348 @@
+[LOG] 2025-06-16 16:56:39 - AppController {/}:
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/, GET} route
+
+[LOG] 2025-06-16 16:56:39 - UserController {/user}:
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/user, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/user/:id, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/user, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/user/:id, PUT} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/user/:id, DELETE} route
+
+[LOG] 2025-06-16 16:56:39 - TrackController {/track}:
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/track, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/track/:id, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/track, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/track/:id, PUT} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/track/:id, DELETE} route
+
+[LOG] 2025-06-16 16:56:39 - ArtistController {/artist}:
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/artist, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/artist/:id, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/artist, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/artist/:id, PUT} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 16:56:39 - AlbumController {/album}:
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/album, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/album/:id, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/album, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/album/:id, PUT} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/album/:id, DELETE} route
+
+[LOG] 2025-06-16 16:56:39 - FavoritesController {/favs}:
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/favs, GET} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/favs/track/:id, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/favs/track/:id, DELETE} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/favs/album/:id, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/favs/album/:id, DELETE} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/favs/artist/:id, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/favs/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 16:56:39 - AuthController {/auth}:
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/auth/signup, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/auth/login, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Mapped {/auth/refresh, POST} route
+
+[LOG] 2025-06-16 16:56:39 - Nest application successfully started
+
+[LOG] 2025-06-16 17:01:58 - AppController {/}:
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/, GET} route
+
+[LOG] 2025-06-16 17:01:58 - UserController {/user}:
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/user, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/user/:id, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/user, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/user/:id, PUT} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/user/:id, DELETE} route
+
+[LOG] 2025-06-16 17:01:58 - TrackController {/track}:
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/track, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/track/:id, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/track, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/track/:id, PUT} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/track/:id, DELETE} route
+
+[LOG] 2025-06-16 17:01:58 - ArtistController {/artist}:
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/artist, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/artist/:id, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/artist, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/artist/:id, PUT} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 17:01:58 - AlbumController {/album}:
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/album, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/album/:id, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/album, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/album/:id, PUT} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/album/:id, DELETE} route
+
+[LOG] 2025-06-16 17:01:58 - FavoritesController {/favs}:
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/favs, GET} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/favs/track/:id, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/favs/track/:id, DELETE} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/favs/album/:id, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/favs/album/:id, DELETE} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/favs/artist/:id, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/favs/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 17:01:58 - AuthController {/auth}:
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/auth/signup, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/auth/login, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Mapped {/auth/refresh, POST} route
+
+[LOG] 2025-06-16 17:01:58 - Nest application successfully started
+
+[LOG] 2025-06-16 17:05:18 - AppController {/}:
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/, GET} route
+
+[LOG] 2025-06-16 17:05:18 - UserController {/user}:
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/user, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/user/:id, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/user, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/user/:id, PUT} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/user/:id, DELETE} route
+
+[LOG] 2025-06-16 17:05:18 - TrackController {/track}:
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/track, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/track/:id, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/track, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/track/:id, PUT} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/track/:id, DELETE} route
+
+[LOG] 2025-06-16 17:05:18 - ArtistController {/artist}:
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/artist, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/artist/:id, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/artist, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/artist/:id, PUT} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 17:05:18 - AlbumController {/album}:
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/album, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/album/:id, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/album, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/album/:id, PUT} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/album/:id, DELETE} route
+
+[LOG] 2025-06-16 17:05:18 - FavoritesController {/favs}:
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/favs, GET} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/favs/track/:id, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/favs/track/:id, DELETE} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/favs/album/:id, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/favs/album/:id, DELETE} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/favs/artist/:id, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/favs/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 17:05:18 - AuthController {/auth}:
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/auth/signup, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/auth/login, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Mapped {/auth/refresh, POST} route
+
+[LOG] 2025-06-16 17:05:18 - Nest application successfully started
+
+[LOG] 2025-06-16 17:07:44 - AppController {/}:
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/, GET} route
+
+[LOG] 2025-06-16 17:07:44 - UserController {/user}:
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/user, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/user/:id, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/user, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/user/:id, PUT} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/user/:id, DELETE} route
+
+[LOG] 2025-06-16 17:07:44 - TrackController {/track}:
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/track, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/track/:id, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/track, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/track/:id, PUT} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/track/:id, DELETE} route
+
+[LOG] 2025-06-16 17:07:44 - ArtistController {/artist}:
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/artist, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/artist/:id, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/artist, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/artist/:id, PUT} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 17:07:44 - AlbumController {/album}:
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/album, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/album/:id, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/album, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/album/:id, PUT} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/album/:id, DELETE} route
+
+[LOG] 2025-06-16 17:07:44 - FavoritesController {/favs}:
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/favs, GET} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/favs/track/:id, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/favs/track/:id, DELETE} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/favs/album/:id, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/favs/album/:id, DELETE} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/favs/artist/:id, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/favs/artist/:id, DELETE} route
+
+[LOG] 2025-06-16 17:07:44 - AuthController {/auth}:
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/auth/signup, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/auth/login, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Mapped {/auth/refresh, POST} route
+
+[LOG] 2025-06-16 17:07:44 - Nest application successfully started
+
+[LOG] 2025-06-16 17:16:45 - AppController {/}:
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/, GET} route
+
+[LOG] 2025-06-16 17:16:45 - UserController {/user}:
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/user, GET} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/user/:id, GET} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/user, POST} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/user/:id, PUT} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/user/:id, DELETE} route
+
+[LOG] 2025-06-16 17:16:45 - TrackController {/track}:
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/track, GET} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/track/:id, GET} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/track, POST} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/track/:id, PUT} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/track/:id, DELETE} route
+
+[LOG] 2025-06-16 17:16:45 - ArtistController {/artist}:
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/artist, GET} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/artist/:id, GET} route
+
+[LOG] 2025-06-16 17:16:45 - Mapped {/artist, POST} route
+
