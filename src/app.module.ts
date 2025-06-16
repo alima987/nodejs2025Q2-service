@@ -7,9 +7,10 @@ import { ArtistModule } from './artists/artists.module';
 import { AlbumModule } from './albums/album.module';
 import { FavoritesModule } from './favorites/favs.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
+import { LoggerModule } from './log/log.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
       isGlobal: true,
     }),
     AuthModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

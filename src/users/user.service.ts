@@ -8,7 +8,6 @@ import { User } from './user.entity';
 import { users } from './user.storage';
 import { CreateUserDto, UpdatePasswordDto } from './dto/user.dto';
 import { v4 as uuidv4, validate } from 'uuid';
-import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 

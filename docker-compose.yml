@@ -1,44 +1,51 @@
+version: '3.8'
+
 services:
   app:
-    container_name: nodejs-service
     build:
       context: .
       dockerfile: Dockerfile
+    image: alima987/home-library-service-part2:latest
+    container_name: homelib
+    networks:
+      - user_defined
+    restart: always
     env_file:
-      - .env
-    ports:
-      - "${PORT:-3000}:${PORT:-3000}"
-    restart: unless-stopped
+      - .env.docker
     depends_on:
       - postgres
-    networks:
-      - nest-network
-    volumes:
-      - .:/app 
-      - /app/node_modules 
-
-  postgres:
-    container_name: nest_postgres
-    build:
-      context: .
-      dockerfile: Dockerfile.DB
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    links:
+      - postgres
     ports:
-      - "${DB_PORT:-5432}:${DB_PORT:-5432}"
-    networks:
-      - nest-network
+      - ${PORT}:${PORT}
     volumes:
-      - db_data:/var/lib/postgresql/data
-      - db_logs:/var/log/postgresql_logs
+      - ./src:/app/src
+      - app_logs:/log/app
+  postgres:
+    build:
+        context: ./src/
+        dockerfile: Dockerfile
+    env_file:
+      - .env
+    container_name: postgres_db
+    networks:
+      - user_defined
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_logs:/var/log/postgresql
 
 volumes:
-  db_data:
-  db_logs:
-
+  app_logs:
+  postgres_data:
+  postgres_logs:
 networks:
-  nest-network:
+  user_defined:
+    name: user_defined
     driver: bridge

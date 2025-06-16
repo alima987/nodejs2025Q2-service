@@ -1,19 +1,23 @@
-FROM node:22.14.0-alpine AS builder
+FROM node:20-alpine as build
 
 WORKDIR /app
-COPY package.json .
-RUN npm i
+
+COPY package.json /app
+
+COPY prisma /app/prisma/
+
+RUN npx prisma generate
+
+RUN npm install --omit-dev && npm cache clean --force
+
 COPY . .
-RUN npm run build
 
-#Prod
-FROM node:22.14.0-alpine
+FROM node:20-alpine as app
 
 WORKDIR /app
-COPY --from=builder /app/package*.json .
-RUN npm ci --omit=dev
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/.env .env
-COPY --from=builder /app/doc ./doc
 
-CMD ["node", "dist/main"]
+COPY --from=build /app /app/
+
+RUN chmod +x /app/docker-entrypoint.sh
+
+ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
