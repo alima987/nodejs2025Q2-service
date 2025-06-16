@@ -65,7 +65,7 @@ export class FavoritesService {
 
     const index = this.favoriteTracks.indexOf(id);
 
-     if (index !== -1) this.favoriteTracks.splice(index, 1);
+    if (index !== -1) this.favoriteTracks.splice(index, 1);
   }
 
   addAlbumToFavorites(id: string) {
@@ -95,7 +95,7 @@ export class FavoritesService {
 
     const index = this.favoriteAlbums.indexOf(id);
 
-     if (index !== -1) this.favoriteAlbums.splice(index, 1);
+    if (index !== -1) this.favoriteAlbums.splice(index, 1);
   }
 
   addArtistToFavorites(id: string) {
@@ -125,6 +125,6 @@ export class FavoritesService {
 
     const index = this.favoriteArtists.indexOf(id);
 
-    if (index !== -1) this.favoriteArtists.splice(index, 1)
+    if (index !== -1) this.favoriteArtists.splice(index, 1);
   }
 }

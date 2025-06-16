@@ -37,6 +37,6 @@ export class ArtistService {
       throw new NotFoundException(`Artist with id ${id} not found`);
     }
     this.artists.splice(userIndex, 1);
-    this.emitter.emit('artist.deleted', id)
+    this.emitter.emit('artist.deleted', id);
   }
 }

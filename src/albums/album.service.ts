@@ -39,7 +39,7 @@ export class AlbumService {
     this.albums.splice(userIndex, 1);
     this.emitter.emit('album.deleted', id);
   }
-  
+
   @OnEvent('artist.deleted')
   nullifyArtistInAlbums(artistId: string) {
     for (const album of this.albums) {

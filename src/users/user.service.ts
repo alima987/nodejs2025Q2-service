@@ -8,15 +8,24 @@ import { users } from './user.storage';
 import { CreateUserDto, UpdatePasswordDto } from './dto/user.dto';
 import { v4 as uuidv4 } from 'uuid';
 import { plainToInstance } from 'class-transformer';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class UserService {
   private users = users;
+  constructor(private readonly prisma: PrismaService) {}
   findAll(): User[] {
     return this.users;
   }
   findById(id: string): User | undefined {
     return this.users.find((u) => u.id === id);
+  }
+  async findOneByUsername(login: string): Promise<User | null> {
+    const user = await this.prisma.user.findFirst({ where: { login } });
+    if (!user) {
+      throw new NotFoundException('Not found user');
+    }
+    return user;
   }
   create(createUserDto: CreateUserDto): User {
     const newUser = new User({
