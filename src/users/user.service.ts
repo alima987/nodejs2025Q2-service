@@ -8,7 +8,7 @@ import { users } from './user.storage';
 import { CreateUserDto, UpdatePasswordDto } from './dto/user.dto';
 import { v4 as uuidv4 } from 'uuid';
 import { plainToInstance } from 'class-transformer';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class UserService {
