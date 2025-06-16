@@ -1,61 +1,47 @@
 import {
-  Body,
   Controller,
-  Delete,
   Get,
-  HttpCode,
-  NotFoundException,
-  Param,
-  ParseUUIDPipe,
   Post,
+  Body,
+  Param,
+  Delete,
+  HttpCode,
   Put,
-  UsePipes,
-  ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
-import { instanceToPlain } from 'class-transformer';
 import { TrackService } from './track.service';
-import { Track } from './track.entity';
-import { CreateTrackDto, UpdateTrackDto } from './track.dto';
+import { CreateTrackDto } from './track.dto';
+import { UpdateTrackDto } from './track.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('track')
-export class TrackController {
-  constructor(private readonly trackService: TrackService) {}
+export class TracksController {
+  constructor(private readonly tracksService: TrackService) {}
+
+  @Post()
+  create(@Body() createTrackDto: CreateTrackDto) {
+    return this.tracksService.create(createTrackDto);
+  }
 
   @Get()
-  @HttpCode(200)
-  findAll(): Track[] {
-    return this.trackService.findAll();
+  findAll() {
+    return this.tracksService.findAll();
   }
+
   @Get(':id')
-  @HttpCode(200)
-  findById(
-    @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
-  ): Track {
-    const track = this.trackService.findById(id);
-    if (!track) {
-      throw new NotFoundException(`Track with id ${id} not found`);
-    }
-    return track;
+  findOne(@Param('id') id: string) {
+    return this.tracksService.findOne(id);
   }
-  @Post()
-  @HttpCode(201)
-  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
-  async create(@Body() dto: CreateTrackDto) {
-    const newTrack = this.trackService.create(dto);
-    return instanceToPlain(newTrack);
-  }
+
   @Put(':id')
-  @HttpCode(200)
-  @UsePipes(new ValidationPipe({ whitelist: true }))
-  updatePassword(
-    @Param('id', new ParseUUIDPipe()) id: string,
-    @Body() dto: UpdateTrackDto,
-  ) {
-    return this.trackService.update(id, dto);
+  update(@Param('id') id: string, @Body() updateTrackDto: UpdateTrackDto) {
+    return this.tracksService.update(id, updateTrackDto);
   }
+
   @Delete(':id')
   @HttpCode(204)
-  deleteUser(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.trackService.delete(id);
+  remove(@Param('id') id: string) {
+    return this.tracksService.remove(id);
   }
 }

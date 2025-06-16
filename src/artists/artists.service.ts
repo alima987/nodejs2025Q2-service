@@ -1,42 +1,78 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { v4 as uuidv4 } from 'uuid';
-import { artists } from './artists.storage';
-import { Artist } from './artists.entity';
-import { CreateArtistDto, UpdateArtistDto } from './artists.dto';
-import { EventEmitter2 } from '@nestjs/event-emitter';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { CreateArtistDto } from './artists.dto';
+import { UpdateArtistDto } from './artists.dto';
+import { validate } from 'uuid';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ArtistService {
-  constructor(private readonly emitter: EventEmitter2) {}
-  private artists = artists;
-  findAll(): Artist[] {
-    return this.artists;
-  }
-  findById(id: string): Artist | undefined {
-    return this.artists.find((u) => u.id === id);
-  }
-  create(dto: CreateArtistDto): Artist {
-    const newArtist = new Artist({
-      id: uuidv4(),
-      ...dto,
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createArtistDto: CreateArtistDto) {
+    if (!createArtistDto.name || !createArtistDto.grammy) {
+      throw new BadRequestException('body does not contain required fields');
+    }
+
+    const newArtist = await this.prisma.artist.create({
+      data: createArtistDto,
     });
-    this.artists.push(newArtist);
     return newArtist;
   }
-  update(id: string, dto: UpdateArtistDto): Artist {
-    const artist = this.artists.find((u) => u.id === id);
+
+  async findAll() {
+    return await this.prisma.artist.findMany();
+  }
+
+  async findOne(id: string) {
+    if (!validate(id)) throw new BadRequestException('Invalid id (not uuid)');
+    const artist = await this.prisma.artist.findUnique({ where: { id } });
     if (!artist) {
-      throw new NotFoundException(`Artist with id ${id} not found`);
+      throw new NotFoundException('Artist with such id was not found');
     }
-    Object.assign(artist, dto);
     return artist;
   }
-  delete(id: string): void {
-    const userIndex = this.artists.findIndex((u) => u.id === id);
-    if (userIndex === -1) {
-      throw new NotFoundException(`Artist with id ${id} not found`);
+
+  async update(id: string, updateArtistDto: UpdateArtistDto) {
+    if (!validate(id)) {
+      throw new BadRequestException('invalid id (not uuid)');
     }
-    this.artists.splice(userIndex, 1);
-    this.emitter.emit('artist.deleted', id);
+
+    if (!updateArtistDto.name && !updateArtistDto.grammy) {
+      throw new BadRequestException('Name or grammy is not defined');
+    }
+
+    if (
+      typeof updateArtistDto.name !== 'string' &&
+      typeof updateArtistDto.grammy !== 'boolean'
+    ) {
+      throw new BadRequestException('Type of name or grammy is not valid');
+    }
+
+    const artist = await this.prisma.artist.findUnique({ where: { id } });
+    if (!artist) {
+      throw new NotFoundException('Artist is not found');
+    }
+
+    const updatedArtist = await this.prisma.artist.update({
+      where: { id },
+      data: updateArtistDto,
+    });
+    return updatedArtist;
+  }
+
+  async remove(id: string) {
+    if (!validate(id)) {
+      throw new BadRequestException('invalid id (not uuid)');
+    }
+    const artist = await this.prisma.artist.findUnique({ where: { id } });
+    if (!artist) {
+      throw new NotFoundException('Artist with such id was not found');
+    }
+
+    await this.prisma.artist.delete({ where: { id } });
   }
 }

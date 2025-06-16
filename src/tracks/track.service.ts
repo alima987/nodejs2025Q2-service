@@ -1,59 +1,94 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { v4 as uuidv4 } from 'uuid';
-import { tracks } from './track.storage';
-import { Track } from './track.entity';
-import { CreateTrackDto, UpdateTrackDto } from './track.dto';
-import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { CreateTrackDto } from './track.dto';
+import { UpdateTrackDto } from './track.dto';
+import { validate } from 'uuid';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class TrackService {
-  constructor(private readonly emitter: EventEmitter2) {}
-  private tracks = tracks;
-  findAll(): Track[] {
-    return this.tracks;
-  }
-  findById(id: string): Track | undefined {
-    return this.tracks.find((u) => u.id === id);
-  }
-  create(dto: CreateTrackDto): Track {
-    const newTrack = new Track({
-      id: uuidv4(),
-      ...dto,
-    });
-    this.tracks.push(newTrack);
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createTrackDto: CreateTrackDto) {
+    if (!createTrackDto.name || !createTrackDto.duration) {
+      throw new BadRequestException('body does not contain required fields');
+    }
+
+    const newTrack = await this.prisma.track.create({ data: createTrackDto });
     return newTrack;
   }
-  update(id: string, dto: UpdateTrackDto): Track {
-    const track = this.tracks.find((u) => u.id === id);
-    if (!track) {
-      throw new NotFoundException(`Track with id ${id} not found`);
-    }
-    Object.assign(track, dto);
-    return track;
-  }
-  delete(id: string): void {
-    const userIndex = this.tracks.findIndex((u) => u.id === id);
-    if (userIndex === -1) {
-      throw new NotFoundException(`Track with id ${id} not found`);
-    }
-    this.tracks.splice(userIndex, 1);
-    this.emitter.emit('track.deleted', id);
-  }
-  @OnEvent('artist.deleted')
-  nullifyArtistInTracks(artistId: string) {
-    for (const track of this.tracks) {
-      if (track.artistId === artistId) {
-        track.artistId = null;
-      }
-    }
+
+  async findAll() {
+    return await this.prisma.track.findMany();
   }
 
-  @OnEvent('album.deleted')
-  nullifyAlbumInTracks(albumId: string) {
-    for (const track of this.tracks) {
-      if (track.albumId === albumId) {
-        track.albumId = null;
-      }
+  async findOne(id: string) {
+    if (!validate(id)) throw new BadRequestException('Invalid id (not uuid)');
+    const track = await this.prisma.track.findUnique({ where: { id } });
+    if (!track) {
+      throw new NotFoundException('Artist with such id was not found');
     }
+    return track;
+  }
+
+  async update(id: string, updateTrackDto: UpdateTrackDto) {
+    if (!validate(id)) {
+      throw new BadRequestException('invalid id (not uuid)');
+    }
+
+    if (!updateTrackDto.name && !updateTrackDto.duration) {
+      throw new BadRequestException('Name or duration is not defined');
+    }
+
+    if (
+      typeof updateTrackDto.name !== 'string' &&
+      typeof updateTrackDto.duration !== 'number'
+    ) {
+      throw new BadRequestException('Type of name or duraton is not valid');
+    }
+
+    const track = await this.prisma.track.findUnique({ where: { id } });
+    if (!track) {
+      throw new NotFoundException('Track is not found');
+    }
+
+    const updatedTrack = await this.prisma.track.update({
+      where: { id },
+      data: updateTrackDto,
+    });
+    return updatedTrack;
+  }
+
+  async remove(id: string) {
+    if (!validate(id)) {
+      throw new BadRequestException('invalid id (not uuid)');
+    }
+    const track = await this.prisma.track.findUnique({ where: { id } });
+    if (!track) {
+      throw new NotFoundException('Artist with such id was not found');
+    }
+
+    const favorites = await this.prisma.favorites.findMany({
+      where: {
+        tracks: { some: { id } },
+      },
+    });
+    for (const favorite of favorites) {
+      await this.prisma.favorites.update({
+        where: { id: favorite.id },
+        data: {
+          tracks: {
+            disconnect: {
+              id,
+            },
+          },
+        },
+      });
+    }
+
+    await this.prisma.track.delete({ where: { id } });
   }
 }
