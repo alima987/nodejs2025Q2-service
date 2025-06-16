@@ -1,13 +1,14 @@
-import { NestFactory, Reflector } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ClassSerializerInterceptor } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { readFile } from 'fs/promises';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
+const port = process.env.PORT || 4000;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
-  const configService = app.get(ConfigService);
-  const port = configService.get<number | string>('PORT') || 4000;
-  await app.listen(port);
+  await app.listen(port, () =>
+    console.log(`Server is listening on port ${port}`),
+  );
 }
 bootstrap();
